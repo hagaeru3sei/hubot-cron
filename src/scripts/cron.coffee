@@ -144,5 +144,9 @@ class Job
 
   sendMessage: (robot) ->
     envelope = user: @user, room: @user.room
-    robot.send envelope, @message
+    if robot.adapter.send
+      robot.adapter.send envelope, @message
+    else
+      robot.send envelope, @message
+
 
